@@ -1,0 +1,304 @@
+<%- include header.ejs %>
+<link href="/css/staff.css" rel="stylesheet">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                <h1>
+                    <%= title %>
+                </h1>
+            </div>
+        </div>
+        <div class="staff-edit">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+                    <div class="staff-edit__info">
+                        <div class="header">
+                            <div class="row">
+                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                                    <div class="title">
+                                        <i class="fa fa-cogs"></i>&nbsp;Thông tin cơ bản
+                                    </div>
+                                </div>
+                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 value">
+                                    <div class="action">
+                                        <a class="btn btn-edit-staff" data-id="<%= staff.staff_id %>"><i class="fa fa-pencil"></i>&nbsp;Chỉnh sửa</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <div class="row">
+                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                    ID:
+                                </div>
+                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 value">
+                                    <%= staff.staff_id %>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                    Mã nhân viên:
+                                </div>
+                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 value">
+                                    <%= staff.staff_code %>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                    Họ và tên:
+                                </div>
+                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 value">
+                                    <%= staff.staff_name %>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                    Ngày sinh:
+                                </div>
+                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 value">
+                                    <%= staff.staff_dob %>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                    Số điện thoại:
+                                </div>
+                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 value">
+                                    <%= staff.staff_phone %>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                    Địa chỉ:
+                                </div>
+                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 value">
+                                    <%= staff.staff_address %>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                    Vai trò:
+                                </div>
+                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 value">
+                                    <%= staff.staff_role %>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                    Trạng thái:
+                                </div>
+                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 value">
+                                    <%if(staff.staff_state == 1){%>
+                                        Đang hoạt động
+                                    <% } else{ %>
+                                        Không hoạt động
+                                    <% } %>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                    Tên đăng nhập:
+                                </div>
+                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 value">
+                                    <%= staff.username %>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
+                    <div class="staff-edit__history-water">
+                        <div class="header">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="title">
+                                        <i class="fa fa-cogs"></i>&nbsp;Lịch sử tưới cây (Trong tháng)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Mã cây</th>
+                                        <th scope="col">Thời gian tưới</th>
+                                        <th scope="col">Lượng nước (ml)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% if(histories){ %>
+                                        <% histories.forEach(function(item) { %>
+                                            <tr>
+                                                <td><%= item.id %></td>
+                                                <td><%= item.tree_name %></td>
+                                                <td><%= item.time %></td>
+                                                <td><%= item.volume %></td>
+                                            </tr>
+                                        <% }) %>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                            <div class="row">
+                                <!-- <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <div>
+                                        <small><i>Hiển thị từ 1 - 10</i></small>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <div class="history-water">
+                                        <div class="pagination">
+                                            
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="staff-edit__water-calendar">
+                        <div class="header-calender">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="title" style="font-size:18px;">
+                                        <i class="fa fa-cogs"></i>&nbsp;Lịch làm việc
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <!-- Responsive calendar - START -->
+                            <div class="responsive-calendar">
+                                <div class="controls">
+                                    <a class="pull-left" data-go="prev">
+                                        <div class="btn btn-primary">Prev</div>
+                                    </a>
+                                    <h4><span data-head-year></span> <span data-head-month></span></h4>
+                                    <a class="pull-right" data-go="next">
+                                        <div class="btn btn-primary">Next</div>
+                                    </a>
+                                </div>
+                                <hr/>
+                                <div class="day-headers">
+                                    <div class="day header">Mon</div>
+                                    <div class="day header">Tue</div>
+                                    <div class="day header">Wed</div>
+                                    <div class="day header">Thu</div>
+                                    <div class="day header">Fri</div>
+                                    <div class="day header">Sat</div>
+                                    <div class="day header">Sun</div>
+                                </div>
+                                <div class="days" data-group="days">
+
+                                </div>
+                            </div>
+                            <!-- Responsive calendar - END -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+  
+    <%- include footer.ejs %>
+        <script src="/js/responsive-calendar.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $(".responsive-calendar").responsiveCalendar({
+                    // Lấy thời gian hệ thống là tháng hiện tại
+                    time: '2013-05',
+                    events: {
+                        "2013-04-30": {
+                            "number": 5,
+                            "url": "http://w3widgets.com/responsive-slider"
+                        },
+                        "2013-04-26": {
+                            "number": 1,
+                            "url": "http://w3widgets.com"
+                        },
+                        "2013-05-03": {
+                            "number": 1
+                        },
+                        "2013-06-12": {}
+                    }
+                });
+            });
+        </script>
+
+        <!-- Modal edit staff -->
+        <div class="modal fade" id="modal-staff" role="dialog">
+            <div class="modal-dialog">  
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-staff-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <form id="form-staff" action="#">
+                        <div class="form-group">
+                            <label class="control-label">Id</label>
+                            <input name="staff_id" placeholder="Id" class="form-control staff-id" type="text" readonly/>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Mã nhân viên</label>
+                            <input name="staff_code" placeholder="Mã nhân viên" class="form-control staff-code" type="text"/>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Họ và tên</label>
+                            <input name="staff_name" placeholder="Họ và tên" class="form-control staff-name" type="text"/>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Ngày sinh</label>
+                            <input name="staff_dob" class="form-control staff-dob" type="date"/>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Số điện thoại</label>
+                            <input name="staff_phone" class="form-control staff-phone" type="text"/>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Địa chỉ</label>
+                            <input name="staff_address" class="form-control staff-address" type="text"/>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Vai trò (Quyền)</label>
+                            <select name="staff_role" class="form-control staff-role">
+                                <option value="STAFF">Nhân viên</option>
+                                <option value="TNV">Tình nguyện viên</option>
+                                <option value="MANAGER">Quản lý</option>
+                              </select>
+                        </div>
+                        <div class="form-group">
+                                <label class="control-label">Trạng thái</label>
+                                <select name="staff_state" class="form-control staff-state">
+                                    <option value="1">Hoạt động</option>
+                                    <option value="2">Không hoạt động</option>
+                                </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Tên đăng nhập</label>
+                            <input name="username" class="form-control staff-username" type="text"/>
+                        </div>
+                        <!-- <div class="form-group">
+                            <label class="control-label">Mật khẩu</label>
+                            <input name="password" class="form-control staff-password" type="text"/>
+                        </div> -->
+                  </form>   
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" onclick="saveStaff()">Save</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        <script src="/js/staff.js"></script>

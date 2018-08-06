@@ -1,0 +1,146 @@
+<%- include header.ejs %>
+<link href="/css/tree_type.css" rel="stylesheet">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                <h1>
+                    <%= title %>
+                </h1>
+            </div>
+        </div>
+        <div class="tree-types">
+            <div class="tree-types__header">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <a onclick="addSensor()" class="btn btn-primary">Thêm mới</a>
+                    </div>
+
+                    <!-- <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="padding-right:0;">
+
+                        <input type="text" class="form-control" placeholder="Tên, mã, SĐT...">
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="padding-left:0;">
+                        <a href="" class="btn btn-default" style="width:100%;"><i class="fa fa-search"></i></a>
+                    </div> -->
+                </div>
+            </div>
+            <div class="tree-types__body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Tên sensor</th>
+                            <th scope="col">Thông tin chi tiết</th>
+                            <th scope="col">Trạng thái</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if(sensors){ %>
+                            <% sensors.forEach(function(item){ %>
+                                <tr>
+                                    <th scope="row"><%= item.sensor_id %></th>
+                                    <td><%= item.sensor_name %></td>
+                                    <td><%= item.sensor_detail %></td>
+                                    <td>
+                                            <%if( item.sensor_state==1){ %>
+                                                Đang hoạt động
+                                            <% }else{ %>
+                                                Không hoạt động
+                                            <% } %>
+                                    </td>
+                                    <td>
+                                        <a onclick="editSensor()"class="btn btn-warning edit-sensor" data-id="<%= item.sensor_id %>">Chỉnh sửa</a>
+                                        <!-- <a class="btn btn-danger">Xóa</a> -->
+                                    </td>
+                                </tr>
+                            <% }); %>
+                        <% } %>
+                        
+                    </tbody>
+                </table>
+            </div>
+            <!-- <div class="tree-types__footer">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="tree-types__footer-left">
+                            <small><i>Hiển thị từ 1 - 10</i></small>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="tree-types__footer-right">
+                            <div class="pagination">
+                                <a href="#">&laquo;</a>
+                                <a href="#">1</a>
+                                <a href="#" class="active">2</a>
+                                <a href="#">3</a>
+                                <a href="#">4</a>
+                                <a href="#">5</a>
+                                <a href="#">6</a>
+                                <a href="#">&raquo;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+
+    </div>
+    <div class="modal fade" id="modal-sensor" role="dialog">
+        <div class="modal-dialog">  
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-sensor-title"></h4>
+            </div>
+            <div class="modal-body">
+                <form id="form-sensor" action="#">
+                    <div class="form-group">
+                        <label class="control-label">Id</label>
+                        <input name="sensor_id" placeholder="Id" class="form-control sensor-id" type="text" readonly/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Gắn trên cây</label>
+                        <select name="current_tree_id" class="form-control current-tree-id">
+                            <option value="1">C9_301</option>
+                            <option value="2">C9_30_2</option>
+                            <option value="3">444444</option>
+                            <option value="4">444444</option>
+                            <option value="5">C9_30_9</option>
+                            <option value="6">C9_301</option>
+                            <option value="7">C9_30_2</option>
+                            <option value="8">444444</option>
+                            <option value="9">444444</option>
+                            <option value="10">C9_30_9</option>
+                            <option value="11">C9_30_9</option>
+                            <option value="12">C9_30_9</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Tên sensor</label>
+                        <input name="sensor_name" placeholder="Tên sensor" class="form-control sensor-name" type="text"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Thông tin sensor</label>
+                        <input name="sensor_detail" placeholder="Thông tin về sensor" class="form-control sensor_detail" type="text"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Trạng thái</label>
+                        <select name="sensor_state" class="form-control sensor-state">
+                                <option value="1">Đang hoạt động</option>
+                                <option value="0">Không hoạt động</option>
+                         </select>
+                    </div>
+              </form>   
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" onclick="saveSensor()">Save</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <script src="/js/sensors.js"></script>
+    <%- include footer.ejs %>

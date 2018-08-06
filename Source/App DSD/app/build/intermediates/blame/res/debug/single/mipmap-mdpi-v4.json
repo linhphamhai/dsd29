@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "F:\\GIT\\DSD20172\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi-v4\\ic_launcher_round.png",
+        "source": "F:\\GIT\\DSD20172\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "F:\\GIT\\DSD20172\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi-v4\\ic_launcher.png",
+        "source": "F:\\GIT\\DSD20172\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+    }
+]

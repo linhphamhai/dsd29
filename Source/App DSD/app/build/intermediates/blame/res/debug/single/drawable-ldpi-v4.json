@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "F:\\GIT\\DSD20172\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4\\ic_camera.png",
+        "source": "F:\\GIT\\DSD20172\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_camera.png"
+    },
+    {
+        "merged": "F:\\GIT\\DSD20172\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4\\ic_launcher_background.png",
+        "source": "F:\\GIT\\DSD20172\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_launcher_background.png"
+    },
+    {
+        "merged": "F:\\GIT\\DSD20172\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4\\ic_close.png",
+        "source": "F:\\GIT\\DSD20172\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_close.png"
+    }
+]

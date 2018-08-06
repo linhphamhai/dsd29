@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <title>Report Tree</title>
+</head>
+
+<body>
+    <div class="row" style="margin-bottom: 50px; align-content: center; align-items: center">
+            <h1 style="font-size: 70px">Report Tree</h1>
+    </div>
+    <div class="container-fluid">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <form method="POST" enctype="multipart/form-data" action="/api/mobile/update-tree-state">
+                <div class="form-group">
+                    <label for="tree_id">Mã của cây</label>
+                    <input class="form-control" style="height: 60px;" type="text" name="tree_id" id="tree_id" />
+                </div>
+                <div class="form-group">
+                    <label for="tree_name">Tên của cây</label>
+                    <input class="form-control" type="text" style="height: 60px;" name="tree_name" id="tree_name" />
+                </div>
+                <div class="form-group">
+                    <label for="tree_state">Trạng thái</label>
+                    <select class="form-control" id="tree_state" style="height: 60px;" name="tree_state" id="tree_state"></select>
+                </div>
+                <div class="form-group">
+                    <label for="tree_description">Mô tả</label>
+                    <textarea class="form-control" style="width: 100%;" name="tree_description" rows="5" id="tree_description"> </textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tree_state_image">Chọn 1 ảnh</label>
+                    <input class="form-control"  type="file" name="tree_state_image" id="tree_state_image" />
+                </div>
+                <input type="submit" value="Gửi" class="btn btn-success" style="height: 60px; float: right; width: 150px;" />
+            </form>
+
+        </div>
+    </div>
+
+</body>
+
+<style>
+
+    body{
+        font-size: 50px;
+    }
+    
+</style>
+</html>

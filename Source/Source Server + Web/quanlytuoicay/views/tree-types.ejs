@@ -1,0 +1,126 @@
+<%- include header.ejs %>
+<link href="/css/tree_type.css" rel="stylesheet">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                <h1>
+                    <%= title %>
+                </h1>
+            </div>
+        </div>
+        <div class="tree-types">
+            <div class="tree-types__header">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <a onclick="addTreeType()" class="btn btn-primary">Thêm mới</a>
+                    </div>
+
+                    <!-- <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="padding-right:0;">
+
+                        <input type="text" class="form-control" placeholder="Tên, mã, SĐT...">
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style="padding-left:0;">
+                        <a href="" class="btn btn-default" style="width:100%;"><i class="fa fa-search"></i></a>
+                    </div> -->
+                </div>
+            </div>
+            <div class="tree-types__body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Tên loại cây</th>
+                            <th scope="col">Nhiệt độ (C)</th>
+                            <th scope="col">Độ ẩm (%)</th>
+                            <th scope="col">Lượng nước (l)</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if(tree_types){ %>
+                            <% tree_types.forEach(function(item){ %>
+                                <tr>
+                                    <th scope="row"><%= item.type_id %></th>
+                                    <td><%= item.type_name %></td>
+                                    <td><%= item.standard_temperature %></td>
+                                    <td><%= item.standard_humidity %></td>
+                                    <td><%= item.standard_water %></td>
+                                    <td>
+                                        <a class="btn btn-warning edit-tree-type" onclick="editTreeType()" data-id="<%= item.type_id %>">Chỉnh sửa</a>
+                                        <!-- <a href="" class="btn btn-danger">Xóa</a> -->
+                                    </td>
+                                </tr>
+                            <% }); %>
+                        <% } %>
+                        
+                    </tbody>
+                </table>
+            </div>
+            <!-- <div class="tree-types__footer">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="tree-types__footer-left">
+                            <small><i>Hiển thị từ 1 - 10</i></small>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="tree-types__footer-right">
+                            <div class="pagination">
+                                <a href="#">&laquo;</a>
+                                <a href="#">1</a>
+                                <a href="#" class="active">2</a>
+                                <a href="#">3</a>
+                                <a href="#">4</a>
+                                <a href="#">5</a>
+                                <a href="#">6</a>
+                                <a href="#">&raquo;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+
+    </div>
+    <div class="modal fade" id="modal-tree-type" role="dialog">
+        <div class="modal-dialog">  
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-tree-type-title"></h4>
+            </div>
+            <div class="modal-body">
+                <form id="form-tree-type" action="#">
+                    <div class="form-group">
+                        <label class="control-label">Id</label>
+                        <input name="type_id" placeholder="Id" class="form-control type-id" type="text" readonly/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Tên loại cây</label>
+                        <input name="type_name" placeholder="Tên loại cây" class="form-control type-name" type="text"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Nhiệt độ (C)</label>
+                        <input name="standard_temperature" placeholder="Nhiệt độ phù hợp" class="form-control standard-temperature" type="text"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Độ ẩm</label>
+                        <input name="standard_humidity" placeholder="Độ ẩm phù hợp"  class="form-control standard-humidity" type="text"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Lượng nước</label>
+                        <input name="standard_water" placeholder="Lượng nước"  class="form-control standard-water" type="text"/>
+                    </div>
+              </form>   
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" onclick="saveTreeType()">Save</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <script src="/js/tree-type.js"></script>
+    <%- include footer.ejs %>

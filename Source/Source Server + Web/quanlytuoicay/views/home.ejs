@@ -1,0 +1,433 @@
+<%- include header.ejs %>
+    <link href="/css/home.css" rel="stylesheet">
+    <link href="/css/staff.css" rel="stylesheet">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                <h1>
+                    <%= title %>
+                </h1>
+            </div>
+        </div>
+        <div class="hust-map">
+            <div class="setting-map">
+                <a href="" class="btn btn-primary">
+                    Cập nhật
+                </a>
+            </div>
+            <div class="action-note" style="color: red;">
+                <small>
+                    <i>Click chuột trái vào chỗ trống để thêm cây mới!</i>
+                </small>
+                <br>
+                <small>
+                    <i>Click chuột trái vào cây hoặc trạm nước để xem, update thông tin!</i>
+                </small>
+            </div>
+            <div class="map">
+                <% if(arrayMap){ %>
+                    <% arrayMap.forEach(function(row){ %>
+                        <div class="row-map">
+                            <% row.forEach(function(item){ %>
+                                <% if(item.value=="0"){ %>
+                                    <div class="map-element nothing" data-x="<%=item.x %>" data-y="<%=item.y %>">
+                                        <a data-toggle="tooltip" title="<%=item.x + ';' + item.y%>">&nbsp;&nbsp;</a>
+                                        <a class="icon-user" data-toggle="tooltip" title="" data-XUser="<%=item.x %>" data-YUser="<%=item.y %>">
+                                            <i class="fa fa-male"></i>
+                                        </a>
+                                    </div>
+                                    <% }else if(item.value=="1"){ %>
+                                        <% if(item.current_state=="DANGEROUS"){ %>
+                                            <div class="map-element tree tree-red" data-id="<%=item.id %>" data-x="<%=item.x %>" data-y="<%=item.y %>" data-name="<%=item.name %>"
+                                                data-tree-state="<%=item.tree_state %>" data-current-state="<%=item.current_state %>"
+                                                data-tree-type="<%=item.tree_type %>" data-water="<%=item.water %>">
+                                                <a data-toggle="tooltip" title="<%='Cây'+item.name +' (' + item.water +'lít)'%>">
+                                                    <i class="fa fa-tree"></i>
+                                                </a>
+                                            </div>
+                                            <% }else{ %>
+                                                <div class="map-element tree tree-green" data-id="<%=item.id %>" data-x="<%=item.x %>" data-y="<%=item.y %>" data-name="<%=item.name %>"
+                                                    data-tree-state="<%=item.tree_state %>" data-current-state="<%=item.current_state %>"
+                                                    data-tree-type="<%=item.tree_type %>" data-water="<%=item.water %>">
+                                                    <a data-toggle="tooltip" title="<%='Cây'+item.name +' (' + item.water +'lít) - (' +item.x+';'+item.y+')' %>">
+                                                        <i class="fa fa-tree"></i>
+                                                    </a>
+                                                </div>
+                                                <% } %>
+                                                    <% }else if(item.value=="2"){ %>
+                                                        <div class="map-element rock" data-x="<%=item.x %>" data-y="<%=item.y %>">
+                                                            <a data-toggle="tooltip" title="<%=item.x + ';' + item.y%>">
+                                                                <i class="fa fa-square"></i>
+                                                            </a>
+                                                        </div>
+                                                        <% } else if(item.value=="4"){ %>
+                                                            <div class="map-element water" data-id="<%=item.id %>" data-name="<%=item.name %>" data-x="<%=item.x %>" data-y="<%=item.y %>"
+                                                                data-state="<%=item.state %>" data-location="<%=item.location %>">
+                                                                <a data-toggle="tooltip" title="<%=item.location %>">
+                                                                    <i class="fa fa-tint"></i>
+                                                                </a>
+                                                            </div>
+                                                            <% } %>
+                                                                <% }); %>
+                        </div>
+                        <% }); %>
+                            <% } %>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-6" style="text-align: right;">
+                            Cây thiếu nước:
+                        </div>
+                        <div class="col-md-2" style="color: red; text-align: right;">
+                            <i class="fa fa-tree"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-6" style="text-align: right;">
+                            Cây bình thường:
+                        </div>
+                        <div class="col-md-2" style="color: green; text-align: right;">
+                            <i class="fa fa-tree"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-6" style="text-align: right;">
+                            Trạm nước:
+                        </div>
+                        <div class="col-md-2" style="color: blue; text-align: right;">
+                            <i class="fa fa-tint"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-6" style="text-align: right;">
+                            Vật cản:
+                        </div>
+                        <div class="col-md-2" style="color: grey; text-align: right;">
+                            <i class="fa fa-square"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top:40px;">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="staff-edit__history-water">
+                        <div class="header">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="title">
+                                        <i class="fa fa-cogs"></i>&nbsp;Danh sách cây
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <a class="btn btn-primary">Thêm</a>
+                            <table class="table" style="border:0.1px solid #ccc; margin-top:15px;">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Mã số cây</th>
+                                        <th scope="col">Lượng nước</th>
+                                        <th scope="col">Trạng thái</th>
+                                        <th scope="col">Tọa độ</th>
+                                        <th scope="col">Lịch sử tưới</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% if(trees){ %>
+                                        <% trees.forEach(function(item){ %>
+                                            <tr>
+                                                <td>
+                                                    <%= item.tree_id %>
+                                                </td>
+                                                <td>
+                                                    <%= item.tree_name %>
+                                                </td>
+                                                <td>
+                                                    <%= item.current_water %>
+                                                </td>
+                                                <td>
+                                                    <%= item.current_state %>
+                                                </td>
+                                                <td>(
+                                                    <%= item.x %>;
+                                                        <%= item.y %>)</td>
+                                                <td>
+                                                    <a href="histories-water-by-tree?tree_id=<%= item.tree_id %>" class="btn btn-primary">Xem chi tiết</a>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-warning">Chỉnh sửa</a>
+                                                    <!-- <a class="btn btn-danger">Xóa</a> -->
+                                                    <a href="/sensor-data?tree_id=<%=item.tree_id%>" class="btn btn-success">Thống kê</a>
+                                                </td>
+                                            </tr>
+                                            <% }); %>
+                                                <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top:40px;">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="staff-edit__history-water">
+                        <div class="header">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="title">
+                                        <i class="fa fa-cogs"></i>&nbsp;Danh sách trạm nước
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <a class="btn btn-primary">Thêm</a>
+                            <table class="table" style="border:0.1px solid #ccc; margin-top:15px;">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Id</th>
+                                        <th scope="col">Tên trạm nước</th>
+                                        <th scope="col">Tòa nhà</th>
+                                        <th scope="col">Tọa độ</th>
+                                        <th scope="col">Trạng thái</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% if(ws){ %>
+                                        <% ws.forEach(function(item){ %>
+                                            <tr>
+                                                <td>
+                                                    <%= item.water_id %>
+                                                </td>
+                                                <td>
+                                                    <%= item.water_name %>
+                                                </td>
+                                                <td>
+                                                    <%= item.water_location %>
+                                                </td>
+                                                <td>(
+                                                    <%= item.x %>;
+                                                        <%= item.y %>)</td>
+                                                <td>
+                                                    <% if(item.state==1) { %>
+                                                        Đang hoạt động
+                                                        <% }else{ %>
+                                                            Không hoạt động
+                                                            <% } %>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-warning">Chỉnh sửa</a>
+                                                    <!-- <a class="btn btn-danger">Xóa</a> -->
+                                                </td>
+                                            </tr>
+                                            <% }); %>
+                                                <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal edit tree -->
+    <div class="modal fade" id="modal-edit-tree" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-edit-tree-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <form id="form-tree-edit" action="#">
+                        <div class="form-group">
+                            <label class="control-label">Id</label>
+                            <input name="tree_id" placeholder="Id" class="form-control tree-id" type="text" readonly/>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Tên cây</label>
+                            <input name="tree_name" placeholder="Tên cây" class="form-control tree-name" type="text" readonly/>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Tọa độ x</label>
+                            <input name="x" placeholder="x" class="form-control x" type="number" readonly/>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Tọa độ y</label>
+                            <input name="y" placeholder="y" class="form-control y" type="number" readonly/>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Lượng nước cần hiện tại</label>
+                            <input name="current_water" placeholder="Lượng nước" class="form-control current_water" type="number" readonly/>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Trạng thái hiện tại</label>
+                            <select class="form-control modal-current-state" name="current_state" readonly>
+                                <option value="NORMAL">NORMAL</option>
+                                <option value="DANGEROUS">DANGEROUS</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Trạng thái (còn sống/đã chết)</label>
+                            <select class="form-control modal-tree-state" name="tree_state" readonly>
+                                <option value="1">Còn sống</option>
+                                <option value="0">Đã chết</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Loại cây</label>
+                            <select class="form-control tree-type" name="tree_type" readonly>
+                                <% if(treeTypes){ %>
+                                    <% treeTypes.forEach(function(item){ %>
+                                        <option value="<%=item.type_id %>">
+                                            <%=item.type_name %>
+                                        </option>
+                                        <% }); %>
+                                            <% } %>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-8 text-left">
+                            <button type="button" class="btn btn-warning modal-edit-tree">Chỉnh sửa</button>
+                            <a href="" class="btn btn-primary history-water">Lịch sử tưới</a>
+                            <a href="" class="btn btn-success statistical-water">Thống kê</a>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-primary modal-save-tree" disabled>Lưu</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Modal water station -->
+    <div class="modal fade" id="modal-edit-ws" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-edit-ws-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <form id="form-ws-edit" action="#">
+                        <div class="form-group">
+                            <label class="control-label">Id</label>
+                            <input name="water_id" placeholder="Id" class="form-control water-id" type="text" readonly/>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Tên trạm nước</label>
+                            <input name="water_name" placeholder="Name" class="form-control water-name" type="text" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Vị trí (Tầng, khu nhà)</label>
+                            <input name="water_location" placeholder="Vị trí" class="form-control water-location" type="text" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Tọa độ x</label>
+                            <input name="water_x" placeholder="x" class="form-control water-x" type="number" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Tọa độ y</label>
+                            <input name="water_y" placeholder="y" class="form-control water-y" type="number" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Trạng thái (còn hoạt động/đang sửa chữa)</label>
+                            <select class="form-control water-state" name="water_state">
+                                <option value="1">Còn hoạt động</option>
+                                <option value="0">Đang sửa chữa</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-8 text-left">
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-primary modal-save-water">Lưu</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal add tree/water station -->
+    <div class="modal fade" id="modal-choose" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-choose-title">Thêm mới cây hoặc trạm nước</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <button type="button" class="btn btn-primary add-tree">Thêm cây mới</button>
+                    <button type="button" class="btn btn-primary add-water">Thêm trạm nước mới</button>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-8">
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script> 
+
+        var oldLocation = [];
+
+    </script>
+    <%- include footer.ejs %>
+        <script src="/js/home.js"></script>
+        <script>
+            socket.on("location-change", function (data) {
+                console.log(data);
+                oldLocation.forEach(function (item) {
+                    var element = $("[data-XUser='" + item.x + "']" + "[data-YUser='" + item.y + "']");
+                    element.attr("title", "Staff_id: " + item.staff_id);
+                    element.hide();
+                });
+                console.log(data);
+                oldLocation = [];
+                data.forEach(function (element) {
+                    oldLocation.push(element);
+                });
+                oldLocation.forEach(function (item) {
+                    var element = $("[data-XUser='" + item.x + "']" + "[data-YUser='" + item.y + "']");
+                    element.attr("title", "Staff_id: " + item.staff_id);
+                    element.show();
+                });
+            })
+        </script>

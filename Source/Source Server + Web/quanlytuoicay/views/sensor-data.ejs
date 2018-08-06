@@ -1,0 +1,159 @@
+<%- include header.ejs %>
+<link href="/css/home.css" rel="stylesheet">
+<link href="/css/staff.css" rel="stylesheet">
+    <div id="page-wrapper">
+            <div id="humidity-area" style="height: 300px; min-width: 310px"></div>
+            <div id="temperature-area" style="height: 300px; min-width: 310px"></div>
+    </div>
+    <%- include footer.ejs %>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/highcharts.js"></script>
+<script src="js/exporting.js"></script>
+<script>
+    var socket = io('http://localhost:3000');
+    socket.on('news', function (data) {
+        console.log(data);
+        socket.emit('my other event', { my: 'data' });
+    });
+
+    socket.on("sensor-data-sent", function(data){
+        loadData();
+    })
+
+    $(document).ready(function () {
+        loadData();
+    });
+
+    function loadData() {
+        var currentUrl = location + "";
+        var indexOfEqual = currentUrl.length - 1;
+        while (currentUrl[indexOfEqual] != '=') {
+            indexOfEqual--;
+        }
+        var tree_id = currentUrl.substring(indexOfEqual + 1, currentUrl.length);
+        $.ajax({
+            url: "http://localhost:3000/api/sensor-data?tree_id=" + tree_id,
+            type: "get",
+            dateType: "json", // dữ liệu trả về dạng text
+            data: {
+
+            },
+            success: function (result) {
+                console.log(result);
+                Highcharts.chart('humidity-area', {
+                    chart: {
+                        zoomType: 'x'
+                    },
+                    title: {
+                        text: 'Chart of tree Humidity'
+                    },
+                    subtitle: {
+                        text: document.ontouchstart === undefined ?
+                            '6 hours latest' : 'Pinch the chart to zoom in'
+                    },
+                    xAxis: {
+                        type: 'categories'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Humidity (%)'
+                        }
+                    },
+                    legend: {
+                        enabled: true
+                    },
+                    plotOptions: {
+                        area: {
+                            fillColor: {
+                                linearGradient: {
+                                    x1: 0,
+                                    y1: 0,
+                                    x2: 0,
+                                    y2: 1
+                                },
+                                stops: [
+                                    [0, Highcharts.getOptions().colors[0]],
+                                    [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                                ]
+                            },
+                            marker: {
+                                radius: 2
+                            },
+                            lineWidth: 1,
+                            states: {
+                                hover: {
+                                    lineWidth: 1
+                                }
+                            },
+                            threshold: null
+                        }
+                    },
+
+                    series: [{
+                        type: 'area',
+                        name: 'Times',
+                        data: result.humidities
+                    }]
+                });
+
+                Highcharts.chart('temperature-area', {
+                    chart: {
+                        zoomType: 'x'
+                    },
+                    title: {
+                        text: 'Chart of tree Temperature'
+                    },
+                    subtitle: {
+                        text: document.ontouchstart === undefined ?
+                            '6 hours latest' : 'Pinch the chart to zoom in'
+                    },
+                    xAxis: {
+                        type: 'categories'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Temperature (%)'
+                        }
+                    },
+                    legend: {
+                        enabled: true
+                    },
+                    plotOptions: {
+                        area: {
+                            fillColor: {
+                                linearGradient: {
+                                    x1: 0,
+                                    y1: 0,
+                                    x2: 0,
+                                    y2: 1
+                                },
+                                stops: [
+                                    [0, Highcharts.getOptions().colors[0]],
+                                    [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                                ]
+                            },
+                            marker: {
+                                radius: 2
+                            },
+                            lineWidth: 1,
+                            states: {
+                                hover: {
+                                    lineWidth: 1
+                                }
+                            },
+                            threshold: null
+                        }
+                    },
+
+                    series: [{
+                        type: 'area',
+                        name: 'Times',
+                        data: result.temperatures
+                    }]
+                });
+            }
+        });
+
+    }
+</script>

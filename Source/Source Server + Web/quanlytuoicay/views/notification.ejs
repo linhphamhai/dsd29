@@ -1,0 +1,134 @@
+<%- include header.ejs %>
+<link href="/css/staff.css" rel="stylesheet">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                <h1>Thông báo mới</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                <table class="table table-bordered" id="tbl-new-notification"></table>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                <h1>Thông báo cũ</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                <table class="table table-bordered" id="tbl-old-notification"></table>
+            </div>
+        </div>
+       
+    </div>
+  
+<%- include footer.ejs %>
+<script>
+        function loadNewNotification(){
+                $.ajax({
+                    url : 'http://localhost:3000/get-tree-state-by-confirm?confirmed=0',
+                    type : 'get',
+                    dataType : 'json',
+                    success : function (result){
+                         
+                        var html = '';
+                        html += '<table border="1" cellspacing="0" cellpadding="10">';
+                        html += '<tr>';
+                                html += '<td>';
+                                html += 'Thời gian';
+                                html += '</td>';
+                                html += '<td>';
+                                html += 'Trạng thái';
+                                html += '</td>';
+                                html += '<td>';
+                                html += 'Mô tả thêm';
+                                html += '</td>';
+                                html += '<td>';
+                                html += 'Ảnh';
+                                html += '</td>';
+                                html += '<td>';
+                                html += 'Ảnh';
+                                html += '</td>';
+                        html += '<tr>';
+                        // Kết quả là một object json
+                        // Nên ta sẽ loop result
+                        $.each (result, function (key, item){
+                            html +=  '<tr>';
+                                html +=  '<td>';
+                                    html +=  item['time'];
+                                html +=  '</td>';
+                                html +=  '<td>';
+                                    html +=  item['tree_state'];
+                                html +=  '</td>';
+                                html +=  '<td>';
+                                    html +=  item['tree_description'];
+                                html +=  '</td>';
+                                html +=  '<td><image style="width:70px; height : 70px" src="';
+                                        html +=  item['tree_state_image'];
+                                        html +=  '" />';
+                                html +=  '</td>';
+                                html +=  '<td><a class="btn btn-info" href="/confirm-tree-state?id=';
+                                    html +=  item['id'];
+                                    html +=  '">Xác nhận</a>';
+                                html +=  '</td>';
+
+                            html +=  '<tr>';
+                        });
+                        html +=  '</table>';
+                        $('#tbl-new-notification').html(html);
+                    }
+                });
+
+                $.ajax({
+                    url : 'http://localhost:3000/get-tree-state-by-confirm?confirmed=1',
+                    type : 'get',
+                    dataType : 'json',
+                    success : function (result){
+                        var html = '';
+                        html += '<table border="1" cellspacing="0" cellpadding="10">';
+                        html += '<tr>';
+                                html += '<td>';
+                                html += 'Thời gian';
+                                html += '</td>';
+                                html += '<td>';
+                                html += 'Trạng thái';
+                                html += '</td>';
+                                html += '<td>';
+                                html += 'Mô tả thêm';
+                                html += '</td>';
+                                html += '<td>';
+                                html += 'Ảnh';
+                                html += '</td>';;
+                        html += '<tr>';
+                        // Kết quả là một object json
+                        // Nên ta sẽ loop result
+                        $.each (result, function (key, item){
+                                html +=  '<tr>';
+                                html +=  '<td>';
+                                    html +=  item['time'];
+                                html +=  '</td>';
+                                html +=  '<td>';
+                                    html +=  item['tree_state'];
+                                html +=  '</td>';
+                                html +=  '<td>';
+                                    html +=  item['tree_description'];
+                                html +=  '</td>';
+                                html +=  '<td><image style="width:70px; height : 70px"  src="';
+                                        html +=  item['tree_state_image'];
+                                        html +=  '" />';
+                                html +=  '</td>';
+                            html +=  '<tr>';
+                        });
+                        html +=  '</table>';
+                        $('#tbl-old-notification').html(html);
+                    }
+                });
+        }
+
+        $(document).ready(function(){
+                loadNewNotification();
+        });
+</script>

@@ -1,0 +1,78 @@
+.staff-edit {
+    border: 0.5px solid #eee;
+    padding: 15px;
+}
+
+.staff-edit__info .header {
+    color: #fff;
+    background-color: #1BBC9B;
+    padding: 10px;
+}
+
+.staff-edit__info .header .title {
+    font-size: 18px;
+}
+
+.staff-edit__info .header .action a {
+    color: #fff;
+    border: 0.5px solid #fff;
+}
+
+.staff-edit__info .body .value {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.staff-edit__info .body {
+    border: 0.2px solid #1BBC9B;
+    padding: 10px;
+}
+
+.staff-edit__history-water .header {
+    color: #fff;
+    background-color: #67809F;
+    padding: 10px;
+}
+
+.staff-edit__history-water .header .title {
+    font-size: 18px;
+}
+
+.staff-edit__history-water .body {
+    border: 0.2px solid #67809F;
+    padding: 10px;
+}
+
+.history-water {
+    text-align: right;
+}
+
+.history-water.pagination a {
+    color: black;
+    float: left;
+    padding: 5px 10px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+}
+
+.history-water .pagination a.active {
+    background-color: #286090;
+    color: white;
+    border: 1px solid #286090;
+}
+
+.staff-edit__water-calendar {
+    margin-top: 40px;
+}
+
+.staff-edit__water-calendar .header-calender {
+    color: #fff;
+    background-color: #f3c200;
+    padding: 10px;
+}
+
+.staff-edit__water-calendar .body {
+    padding: 10px;
+    border: 0.5px solid #f3c200;
+}

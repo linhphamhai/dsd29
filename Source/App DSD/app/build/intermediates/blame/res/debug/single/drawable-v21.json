@@ -1,0 +1,62 @@
+[
+    {
+        "merged": "F:\\GIT\\DSD20172\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\avd_hide_password.xml",
+        "source": "C:\\Users\\tungts\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\0fa20c23a9321eb6d39f58608ce3c0bd\\res\\drawable-v21\\avd_hide_password.xml"
+    },
+    {
+        "merged": "F:\\GIT\\DSD20172\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\design_bottom_navigation_item_background.xml",
+        "source": "C:\\Users\\tungts\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\0fa20c23a9321eb6d39f58608ce3c0bd\\res\\drawable-v21\\design_bottom_navigation_item_background.xml"
+    },
+    {
+        "merged": "F:\\GIT\\DSD20172\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\bg_item_infor_tree.xml",
+        "source": "F:\\GIT\\DSD20172\\app\\src\\main\\res\\drawable-v21\\bg_item_infor_tree.xml"
+    },
+    {
+        "merged": "F:\\GIT\\DSD20172\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\bg_btn_login.xml",
+        "source": "F:\\GIT\\DSD20172\\app\\src\\main\\res\\drawable-v21\\bg_btn_login.xml"
+    },
+    {
+        "merged": "F:\\GIT\\DSD20172\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\ic_demo.png",
+        "source": "F:\\GIT\\DSD20172\\app\\src\\main\\res\\drawable-v21\\ic_demo.png"
+    },
+    {
+        "merged": "F:\\GIT\\DSD20172\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_action_bar_item_background_material.xml",
+        "source": "C:\\Users\\tungts\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\3e43ab045d7aa62dfd9892bb02896c73\\res\\drawable-v21\\abc_action_bar_item_background_material.xml"
+    },
+    {
+        "merged": "F:\\GIT\\DSD20172\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\marker2.png",
+        "source": "F:\\GIT\\DSD20172\\app\\src\\main\\res\\drawable-v21\\marker2.png"
+    },
+    {
+        "merged": "F:\\GIT\\DSD20172\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\design_password_eye.xml",
+        "source": "C:\\Users\\tungts\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\0fa20c23a9321eb6d39f58608ce3c0bd\\res\\drawable-v21\\design_password_eye.xml"
+    },
+    {
+        "merged": "F:\\GIT\\DSD20172\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_edit_text_material.xml",
+        "source": "C:\\Users\\tungts\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\3e43ab045d7aa62dfd9892bb02896c73\\res\\drawable-v21\\abc_edit_text_material.xml"
+    },
+    {
+        "merged": "F:\\GIT\\DSD20172\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\btn_logout.xml",
+        "source": "F:\\GIT\\DSD20172\\app\\src\\main\\res\\drawable-v21\\btn_logout.xml"
+    },
+    {
+        "merged": "F:\\GIT\\DSD20172\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\star.png",
+        "source": "F:\\GIT\\DSD20172\\app\\src\\main\\res\\drawable-v21\\star.png"
+    },
+    {
+        "merged": "F:\\GIT\\DSD20172\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\notification_action_background.xml",
+        "source": "C:\\Users\\tungts\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\9606b707dc923e1ba98eb2db46504882\\res\\drawable-v21\\notification_action_background.xml"
+    },
+    {
+        "merged": "F:\\GIT\\DSD20172\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\avd_show_password.xml",
+        "source": "C:\\Users\\tungts\\.gradle\\caches\\transforms-1\\files-1.1\\design-26.1.0.aar\\0fa20c23a9321eb6d39f58608ce3c0bd\\res\\drawable-v21\\avd_show_password.xml"
+    },
+    {
+        "merged": "F:\\GIT\\DSD20172\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_btn_colored_material.xml",
+        "source": "C:\\Users\\tungts\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\3e43ab045d7aa62dfd9892bb02896c73\\res\\drawable-v21\\abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "F:\\GIT\\DSD20172\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\bg_normal.xml",
+        "source": "F:\\GIT\\DSD20172\\app\\src\\main\\res\\drawable-v21\\bg_normal.xml"
+    }
+]

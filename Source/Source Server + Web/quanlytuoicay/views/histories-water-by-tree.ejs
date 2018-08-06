@@ -1,0 +1,42 @@
+<%- include header.ejs %>
+<link href="/css/tree_type.css" rel="stylesheet">
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                <h1>
+                    <%= title %>
+                </h1>
+            </div>
+        </div>
+        <div class="tree-types">
+            <div class="tree-types__body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Tree ID</th>
+                            <th scope="col">Thời gian tưới</th>
+                            <th scope="col">Lượng nước</th>
+                            <th scope="col">Nhân viên</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if(data){ %>
+                            <% data.forEach(function(item){ %>
+                                <tr>
+                                    <th scope="row"><%= item.id %></th>
+                                    <td><%= item.tree_id %></td>
+                                    <td><%= item.time %></td>
+                                    <td><%= item.volume %></td>
+                                    <td><%= item.staff_name %></td>
+                                </tr>
+                            <% }); %>
+                        <% } %>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <%- include footer.ejs %>

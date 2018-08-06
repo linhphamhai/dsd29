@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "F:\\GIT\\DSD20172\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_map.xml",
+        "source": "F:\\GIT\\DSD20172\\app\\src\\main\\res\\menu\\menu_map.xml"
+    },
+    {
+        "merged": "F:\\GIT\\DSD20172\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_drawer.xml",
+        "source": "F:\\GIT\\DSD20172\\app\\src\\main\\res\\menu\\menu_drawer.xml"
+    },
+    {
+        "merged": "F:\\GIT\\DSD20172\\app\\build\\intermediates\\res\\merged\\debug\\menu\\search_view.xml",
+        "source": "F:\\GIT\\DSD20172\\app\\src\\main\\res\\menu\\search_view.xml"
+    }
+]
